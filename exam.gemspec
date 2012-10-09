@@ -4,8 +4,8 @@ require File.expand_path('../lib/exam/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Zac Clark", "Georg Apitz"]
   gem.email         = ["zac@pivotallabs.com", "georg@pivotallabs.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{A test suite runner for ruby.}
+  gem.summary       = %q{Uses a Suitefile to run large test suites.}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
