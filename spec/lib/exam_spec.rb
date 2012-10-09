@@ -53,4 +53,54 @@ describe Exam do
     exam = Exam.new { timing false }
     exam.timing?.should == false
   end
+
+  it "should run" do
+    exam = Exam.new do
+      suite "test" do
+        task "ls"
+      end
+    end
+
+    Exam::Suite.any_instance.should_receive(:run)
+    Exam::Suite.any_instance.stub(:success?).and_return(true)
+
+    exam.run
+    exam.success?.should == true
+  end
+
+  it "should allow running a suite by name" do
+    exam = Exam.new do
+      suite "test" do
+        task "ls"
+      end
+
+      suite "not me" do
+
+      end
+    end
+
+    exam.suites.first.should_receive :run
+    exam.suites.last.should_not_receive :run
+
+    exam.run("test")
+  end
+
+  it "should not have succeeded if any of its suites fail" do
+    exam = Exam.new do
+      suite "test" do
+        task "ls"
+      end
+
+      suite "not me" do
+
+      end
+    end
+
+    exam.suites.first.stub(:success? => false)
+    exam.suites.last.stub(:success? => true)
+
+    exam.run
+
+    exam.success?.should == false
+  end
 end

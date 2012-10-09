@@ -8,6 +8,14 @@ class Exam
       instance_eval(&block)
     end
 
+    def run
+
+    end
+
+    def success?
+
+    end
+
     private
 
     def task(command)
