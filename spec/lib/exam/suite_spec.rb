@@ -54,4 +54,23 @@ describe Exam::Suite do
       suite.success?.should == false
     end
   end
+
+  describe "#time" do
+    it "should return a total of the times of its tasks" do
+      suite = Exam::Suite.new "name" do
+        task "ls"
+        task "laugh"
+      end
+
+      suite.tasks.each do |task|
+        task.stub(:run)
+      end
+      suite.tasks.first.stub(:success? => true, time: 4.2)
+      suite.tasks.last.stub(:success? => false, time: 1.2)
+
+      suite.run
+
+      suite.time.should == 5.4
+    end
+  end
 end

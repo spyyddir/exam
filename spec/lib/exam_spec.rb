@@ -2,6 +2,10 @@ require "rspec"
 require "exam"
 
 describe Exam do
+  before do
+    Exam::Task.any_instance.stub(:run)
+  end
+
   it "should collect a set of test suites" do
     exam = Exam.new do
       suite "something" do

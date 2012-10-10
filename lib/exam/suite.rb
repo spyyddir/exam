@@ -20,6 +20,12 @@ class Exam
       @success
     end
 
+    def time
+      @tasks.inject(0) do |memo, task|
+        memo += task.time
+      end
+    end
+
     private
 
     def task(command)
