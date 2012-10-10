@@ -10,9 +10,11 @@ class Exam
     end
 
     def run
+      puts " #{command} ".center(80, "=")
       @time = Benchmark.realtime do
         @success = system(@command)
       end
+      puts
     end
 
     def success?
