@@ -11,6 +11,12 @@ exam = Exam.new do
   suite "all good" do
     task "ps"
   end
+  
+  suite "run_specs" do
+    task "rspec" do
+      "rspec ../spec"
+    end
+  end
 
   timing :on
 end
