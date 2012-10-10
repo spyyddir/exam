@@ -32,15 +32,20 @@ class Exam
   end
 
   def run(suite_name = :none)
+    suite_name = :none if suite_name == ""
     if suite_name == :none
       @suites.each do |suite|
         suite.run
         @success = false unless suite.success?
       end
+
+      @run_suites = @suites
     else
       to_run = @suites.detect {|suite| suite.name == suite_name}
       to_run.run
       @success = false unless to_run.success?
+
+      @run_suites = [to_run]
     end
 
     print_results
@@ -59,7 +64,7 @@ class Exam
   private
 
   def print_results
-    @suites.each do |suite|
+    @run_suites.each do |suite|
       puts "#{suite.success? ? success_character : failure_character}#{" (#{suite.time}s)" if timing?} #{suite.name}"
       suite.tasks.sort.each do |task|
         print "  "

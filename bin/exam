@@ -1,3 +1,18 @@
 #!/usr/bin/env ruby
 
-require 'exam'
+require "exam"
+
+if File.exist?("Suitefile")
+  setup = File.read("Suitefile")
+  exam = Exam.new do
+    eval(setup)
+  end
+  if ARGV
+    exam.run(ARGV.join(" "))
+  else
+    exam.run
+  end
+
+else
+  puts "No Suitefile found."
+end
