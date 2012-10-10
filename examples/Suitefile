@@ -1,0 +1,12 @@
+suite "main" do
+  task "ls"
+  task "cd .."
+  task "pwd"
+  task "cd lsdfhskjdhfkjsdhk"
+end
+
+suite "ops" do
+  task "ps"
+end
+
+timing :on
